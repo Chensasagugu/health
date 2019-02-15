@@ -1,7 +1,9 @@
 package hdu.cn.hziee.dao;
 
 import hdu.cn.hziee.model.StandardIntake_Female;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface StandardIntake_FemaleMapper {
     int deleteByPrimaryKey(Integer siId);
 
