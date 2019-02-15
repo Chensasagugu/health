@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hdu.cn.hziee.dao.PushInfomationMapper" >
+  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.PushInfomation" >
+    <id column="PI_id" property="piId" jdbcType="INTEGER" />
+    <result column="User_id" property="userId" jdbcType="INTEGER" />
+    <result column="UnderlyingDisease" property="underlyingdisease" jdbcType="VARCHAR" />
+    <result column="JournalTips" property="journaltips" jdbcType="VARCHAR" />
+    <result column="PI_date" property="piDate" jdbcType="TIMESTAMP" />
+    <result column="PI_time" property="piTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PI_id, User_id, UnderlyingDisease, JournalTips, PI_date, PI_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pushinfomation
+    where PI_id = #{piId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pushinfomation
+    where PI_id = #{piId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hdu.cn.hziee.model.PushInfomation" >
+    <selectKey resultType="java.lang.Integer" keyProperty="piId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pushinfomation (User_id, UnderlyingDisease, JournalTips, 
+      PI_date, PI_time)
+    values (#{userId,jdbcType=INTEGER}, #{underlyingdisease,jdbcType=VARCHAR}, #{journaltips,jdbcType=VARCHAR}, 
+      #{piDate,jdbcType=TIMESTAMP}, #{piTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.PushInfomation" >
+    <selectKey resultType="java.lang.Integer" keyProperty="piId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pushinfomation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        User_id,
+      </if>
+      <if test="underlyingdisease != null" >
+        UnderlyingDisease,
+      </if>
+      <if test="journaltips != null" >
+        JournalTips,
+      </if>
+      <if test="piDate != null" >
+        PI_date,
+      </if>
+      <if test="piTime != null" >
+        PI_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="underlyingdisease != null" >
+        #{underlyingdisease,jdbcType=VARCHAR},
+      </if>
+      <if test="journaltips != null" >
+        #{journaltips,jdbcType=VARCHAR},
+      </if>
+      <if test="piDate != null" >
+        #{piDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="piTime != null" >
+        #{piTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.PushInfomation" >
+    update pushinfomation
+    <set >
+      <if test="userId != null" >
+        User_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="underlyingdisease != null" >
+        UnderlyingDisease = #{underlyingdisease,jdbcType=VARCHAR},
+      </if>
+      <if test="journaltips != null" >
+        JournalTips = #{journaltips,jdbcType=VARCHAR},
+      </if>
+      <if test="piDate != null" >
+        PI_date = #{piDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="piTime != null" >
+        PI_time = #{piTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where PI_id = #{piId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.PushInfomation" >
+    update pushinfomation
+    set User_id = #{userId,jdbcType=INTEGER},
+      UnderlyingDisease = #{underlyingdisease,jdbcType=VARCHAR},
+      JournalTips = #{journaltips,jdbcType=VARCHAR},
+      PI_date = #{piDate,jdbcType=TIMESTAMP},
+      PI_time = #{piTime,jdbcType=INTEGER}
+    where PI_id = #{piId,jdbcType=INTEGER}
+  </update>
+</mapper>

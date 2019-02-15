@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hdu.cn.hziee.dao.RecipesMapper" >
+  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.Recipes" >
+    <id column="Recipes_id" property="recipesId" jdbcType="INTEGER" />
+    <result column="Recipes_name" property="recipesName" jdbcType="VARCHAR" />
+    <result column="Recipes_type" property="recipesType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Recipes_id, Recipes_name, Recipes_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recipes
+    where Recipes_id = #{recipesId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recipes
+    where Recipes_id = #{recipesId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hdu.cn.hziee.model.Recipes" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recipesId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into recipes (Recipes_name, Recipes_type)
+    values (#{recipesName,jdbcType=VARCHAR}, #{recipesType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.Recipes" >
+    <selectKey resultType="java.lang.Integer" keyProperty="recipesId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into recipes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recipesName != null" >
+        Recipes_name,
+      </if>
+      <if test="recipesType != null" >
+        Recipes_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recipesName != null" >
+        #{recipesName,jdbcType=VARCHAR},
+      </if>
+      <if test="recipesType != null" >
+        #{recipesType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.Recipes" >
+    update recipes
+    <set >
+      <if test="recipesName != null" >
+        Recipes_name = #{recipesName,jdbcType=VARCHAR},
+      </if>
+      <if test="recipesType != null" >
+        Recipes_type = #{recipesType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Recipes_id = #{recipesId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.Recipes" >
+    update recipes
+    set Recipes_name = #{recipesName,jdbcType=VARCHAR},
+      Recipes_type = #{recipesType,jdbcType=VARCHAR}
+    where Recipes_id = #{recipesId,jdbcType=INTEGER}
+  </update>
+</mapper>

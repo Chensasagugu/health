@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hdu.cn.hziee.dao.FoodFormulaMapper" >
+  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.FoodFormula" >
+    <id column="FF_id" property="ffId" jdbcType="INTEGER" />
+    <result column="Recipes_id" property="recipesId" jdbcType="INTEGER" />
+    <result column="Food_id" property="foodId" jdbcType="INTEGER" />
+    <result column="Food_number" property="foodNumber" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FF_id, Recipes_id, Food_id, Food_number
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from foodformula
+    where FF_id = #{ffId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from foodformula
+    where FF_id = #{ffId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hdu.cn.hziee.model.FoodFormula" >
+    <selectKey resultType="java.lang.Integer" keyProperty="ffId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into foodformula (Recipes_id, Food_id, Food_number
+      )
+    values (#{recipesId,jdbcType=INTEGER}, #{foodId,jdbcType=INTEGER}, #{foodNumber,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.FoodFormula" >
+    <selectKey resultType="java.lang.Integer" keyProperty="ffId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into foodformula
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recipesId != null" >
+        Recipes_id,
+      </if>
+      <if test="foodId != null" >
+        Food_id,
+      </if>
+      <if test="foodNumber != null" >
+        Food_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recipesId != null" >
+        #{recipesId,jdbcType=INTEGER},
+      </if>
+      <if test="foodId != null" >
+        #{foodId,jdbcType=INTEGER},
+      </if>
+      <if test="foodNumber != null" >
+        #{foodNumber,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.FoodFormula" >
+    update foodformula
+    <set >
+      <if test="recipesId != null" >
+        Recipes_id = #{recipesId,jdbcType=INTEGER},
+      </if>
+      <if test="foodId != null" >
+        Food_id = #{foodId,jdbcType=INTEGER},
+      </if>
+      <if test="foodNumber != null" >
+        Food_number = #{foodNumber,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where FF_id = #{ffId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.FoodFormula" >
+    update foodformula
+    set Recipes_id = #{recipesId,jdbcType=INTEGER},
+      Food_id = #{foodId,jdbcType=INTEGER},
+      Food_number = #{foodNumber,jdbcType=DOUBLE}
+    where FF_id = #{ffId,jdbcType=INTEGER}
+  </update>
+</mapper>
