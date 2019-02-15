@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hdu.cn.hziee.dao.StandardIntake_MaleMapper" >
+  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.StandardIntake_Male" >
+    <id column="SI_id" property="siId" jdbcType="INTEGER" />
+    <result column="SI_age" property="siAge" jdbcType="INTEGER" />
+    <result column="SI_energy" property="siEnergy" jdbcType="INTEGER" />
+    <result column="SI_portein" property="siPortein" jdbcType="INTEGER" />
+    <result column="SI_vitamin_A" property="siVitaminA" jdbcType="INTEGER" />
+    <result column="SI_vitamin_B_1" property="siVitaminB1" jdbcType="DOUBLE" />
+    <result column="SI_vitamin_B_2" property="siVitaminB2" jdbcType="DOUBLE" />
+    <result column="SI_vitamin_C" property="siVitaminC" jdbcType="INTEGER" />
+    <result column="SI_physical" property="siPhysical" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SI_id, SI_age, SI_energy, SI_portein, SI_vitamin_A, SI_vitamin_B_1, SI_vitamin_B_2, 
+    SI_vitamin_C, SI_physical
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from standardintake_male
+    where SI_id = #{siId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from standardintake_male
+    where SI_id = #{siId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hdu.cn.hziee.model.StandardIntake_Male" >
+    <selectKey resultType="java.lang.Integer" keyProperty="siId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into standardintake_male (SI_age, SI_energy, SI_portein, 
+      SI_vitamin_A, SI_vitamin_B_1, SI_vitamin_B_2, 
+      SI_vitamin_C, SI_physical)
+    values (#{siAge,jdbcType=INTEGER}, #{siEnergy,jdbcType=INTEGER}, #{siPortein,jdbcType=INTEGER}, 
+      #{siVitaminA,jdbcType=INTEGER}, #{siVitaminB1,jdbcType=DOUBLE}, #{siVitaminB2,jdbcType=DOUBLE}, 
+      #{siVitaminC,jdbcType=INTEGER}, #{siPhysical,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.StandardIntake_Male" >
+    <selectKey resultType="java.lang.Integer" keyProperty="siId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into standardintake_male
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="siAge != null" >
+        SI_age,
+      </if>
+      <if test="siEnergy != null" >
+        SI_energy,
+      </if>
+      <if test="siPortein != null" >
+        SI_portein,
+      </if>
+      <if test="siVitaminA != null" >
+        SI_vitamin_A,
+      </if>
+      <if test="siVitaminB1 != null" >
+        SI_vitamin_B_1,
+      </if>
+      <if test="siVitaminB2 != null" >
+        SI_vitamin_B_2,
+      </if>
+      <if test="siVitaminC != null" >
+        SI_vitamin_C,
+      </if>
+      <if test="siPhysical != null" >
+        SI_physical,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="siAge != null" >
+        #{siAge,jdbcType=INTEGER},
+      </if>
+      <if test="siEnergy != null" >
+        #{siEnergy,jdbcType=INTEGER},
+      </if>
+      <if test="siPortein != null" >
+        #{siPortein,jdbcType=INTEGER},
+      </if>
+      <if test="siVitaminA != null" >
+        #{siVitaminA,jdbcType=INTEGER},
+      </if>
+      <if test="siVitaminB1 != null" >
+        #{siVitaminB1,jdbcType=DOUBLE},
+      </if>
+      <if test="siVitaminB2 != null" >
+        #{siVitaminB2,jdbcType=DOUBLE},
+      </if>
+      <if test="siVitaminC != null" >
+        #{siVitaminC,jdbcType=INTEGER},
+      </if>
+      <if test="siPhysical != null" >
+        #{siPhysical,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.StandardIntake_Male" >
+    update standardintake_male
+    <set >
+      <if test="siAge != null" >
+        SI_age = #{siAge,jdbcType=INTEGER},
+      </if>
+      <if test="siEnergy != null" >
+        SI_energy = #{siEnergy,jdbcType=INTEGER},
+      </if>
+      <if test="siPortein != null" >
+        SI_portein = #{siPortein,jdbcType=INTEGER},
+      </if>
+      <if test="siVitaminA != null" >
+        SI_vitamin_A = #{siVitaminA,jdbcType=INTEGER},
+      </if>
+      <if test="siVitaminB1 != null" >
+        SI_vitamin_B_1 = #{siVitaminB1,jdbcType=DOUBLE},
+      </if>
+      <if test="siVitaminB2 != null" >
+        SI_vitamin_B_2 = #{siVitaminB2,jdbcType=DOUBLE},
+      </if>
+      <if test="siVitaminC != null" >
+        SI_vitamin_C = #{siVitaminC,jdbcType=INTEGER},
+      </if>
+      <if test="siPhysical != null" >
+        SI_physical = #{siPhysical,jdbcType=INTEGER},
+      </if>
+    </set>
+    where SI_id = #{siId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.StandardIntake_Male" >
+    update standardintake_male
+    set SI_age = #{siAge,jdbcType=INTEGER},
+      SI_energy = #{siEnergy,jdbcType=INTEGER},
+      SI_portein = #{siPortein,jdbcType=INTEGER},
+      SI_vitamin_A = #{siVitaminA,jdbcType=INTEGER},
+      SI_vitamin_B_1 = #{siVitaminB1,jdbcType=DOUBLE},
+      SI_vitamin_B_2 = #{siVitaminB2,jdbcType=DOUBLE},
+      SI_vitamin_C = #{siVitaminC,jdbcType=INTEGER},
+      SI_physical = #{siPhysical,jdbcType=INTEGER}
+    where SI_id = #{siId,jdbcType=INTEGER}
+  </update>
+</mapper>
