@@ -3,6 +3,8 @@ package hdu.cn.hziee.dao;
 import hdu.cn.hziee.model.FoodFormula;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface FoodFormulaMapper {
     int deleteByPrimaryKey(Integer ffId);
@@ -16,4 +18,6 @@ public interface FoodFormulaMapper {
     int updateByPrimaryKeySelective(FoodFormula record);
 
     int updateByPrimaryKey(FoodFormula record);
+
+    List selectByrecipesId(Integer recipesId);
 }

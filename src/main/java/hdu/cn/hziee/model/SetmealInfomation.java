@@ -1,11 +1,15 @@
 package hdu.cn.hziee.model;
 
-public class SetMealInfomation {
+public class SetmealInfomation {
     private Integer smId;
 
-    private Integer siEnergy;
+    private String smName;
 
-    private Integer siPortein;
+    private Double siFat;
+
+    private Double siEnergy;
+
+    private Double siPortein;
 
     private Integer siVitaminA;
 
@@ -25,19 +29,35 @@ public class SetMealInfomation {
         this.smId = smId;
     }
 
-    public Integer getSiEnergy() {
+    public String getSmName() {
+        return smName;
+    }
+
+    public void setSmName(String smName) {
+        this.smName = smName == null ? null : smName.trim();
+    }
+
+    public Double getSiFat() {
+        return siFat;
+    }
+
+    public void setSiFat(Double siFat) {
+        this.siFat = siFat;
+    }
+
+    public Double getSiEnergy() {
         return siEnergy;
     }
 
-    public void setSiEnergy(Integer siEnergy) {
+    public void setSiEnergy(Double siEnergy) {
         this.siEnergy = siEnergy;
     }
 
-    public Integer getSiPortein() {
+    public Double getSiPortein() {
         return siPortein;
     }
 
-    public void setSiPortein(Integer siPortein) {
+    public void setSiPortein(Double siPortein) {
         this.siPortein = siPortein;
     }
 

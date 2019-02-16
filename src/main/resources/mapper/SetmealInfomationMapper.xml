@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hdu.cn.hziee.dao.SetMealInfomationMapper" >
-  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.SetMealInfomation" >
+<mapper namespace="hdu.cn.hziee.dao.SetmealInfomationMapper" >
+  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.SetmealInfomation" >
     <id column="SM_id" property="smId" jdbcType="INTEGER" />
-    <result column="SI_energy" property="siEnergy" jdbcType="INTEGER" />
-    <result column="SI_portein" property="siPortein" jdbcType="INTEGER" />
+    <result column="SM_name" property="smName" jdbcType="VARCHAR" />
+    <result column="SI_fat" property="siFat" jdbcType="DOUBLE" />
+    <result column="SI_energy" property="siEnergy" jdbcType="DOUBLE" />
+    <result column="SI_portein" property="siPortein" jdbcType="DOUBLE" />
     <result column="SI_vitamin_A" property="siVitaminA" jdbcType="INTEGER" />
     <result column="SI_vitamin_B_1" property="siVitaminB1" jdbcType="DOUBLE" />
     <result column="SI_vitamin_B_2" property="siVitaminB2" jdbcType="DOUBLE" />
@@ -12,8 +14,8 @@
     <result column="Right_time" property="rightTime" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    SM_id, SI_energy, SI_portein, SI_vitamin_A, SI_vitamin_B_1, SI_vitamin_B_2, SI_vitamin_C, 
-    Right_time
+    SM_id, SM_name, SI_fat, SI_energy, SI_portein, SI_vitamin_A, SI_vitamin_B_1, SI_vitamin_B_2, 
+    SI_vitamin_C, Right_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -25,23 +27,31 @@
     delete from setmealinfomation
     where SM_id = #{smId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="hdu.cn.hziee.model.SetMealInfomation" >
+  <insert id="insert" parameterType="hdu.cn.hziee.model.SetmealInfomation" >
     <selectKey resultType="java.lang.Integer" keyProperty="smId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into setmealinfomation (SI_energy, SI_portein, SI_vitamin_A, 
-      SI_vitamin_B_1, SI_vitamin_B_2, SI_vitamin_C, 
-      Right_time)
-    values (#{siEnergy,jdbcType=INTEGER}, #{siPortein,jdbcType=INTEGER}, #{siVitaminA,jdbcType=INTEGER}, 
-      #{siVitaminB1,jdbcType=DOUBLE}, #{siVitaminB2,jdbcType=DOUBLE}, #{siVitaminC,jdbcType=INTEGER}, 
-      #{rightTime,jdbcType=INTEGER})
+    insert into setmealinfomation (SM_name, SI_fat, SI_energy, 
+      SI_portein, SI_vitamin_A, SI_vitamin_B_1, 
+      SI_vitamin_B_2, SI_vitamin_C, Right_time
+      )
+    values (#{smName,jdbcType=VARCHAR}, #{siFat,jdbcType=DOUBLE}, #{siEnergy,jdbcType=DOUBLE}, 
+      #{siPortein,jdbcType=DOUBLE}, #{siVitaminA,jdbcType=INTEGER}, #{siVitaminB1,jdbcType=DOUBLE}, 
+      #{siVitaminB2,jdbcType=DOUBLE}, #{siVitaminC,jdbcType=INTEGER}, #{rightTime,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.SetMealInfomation" >
+  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.SetmealInfomation" >
     <selectKey resultType="java.lang.Integer" keyProperty="smId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into setmealinfomation
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="smName != null" >
+        SM_name,
+      </if>
+      <if test="siFat != null" >
+        SI_fat,
+      </if>
       <if test="siEnergy != null" >
         SI_energy,
       </if>
@@ -65,11 +75,17 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="smName != null" >
+        #{smName,jdbcType=VARCHAR},
+      </if>
+      <if test="siFat != null" >
+        #{siFat,jdbcType=DOUBLE},
+      </if>
       <if test="siEnergy != null" >
-        #{siEnergy,jdbcType=INTEGER},
+        #{siEnergy,jdbcType=DOUBLE},
       </if>
       <if test="siPortein != null" >
-        #{siPortein,jdbcType=INTEGER},
+        #{siPortein,jdbcType=DOUBLE},
       </if>
       <if test="siVitaminA != null" >
         #{siVitaminA,jdbcType=INTEGER},
@@ -88,14 +104,20 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.SetMealInfomation" >
+  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.SetmealInfomation" >
     update setmealinfomation
     <set >
+      <if test="smName != null" >
+        SM_name = #{smName,jdbcType=VARCHAR},
+      </if>
+      <if test="siFat != null" >
+        SI_fat = #{siFat,jdbcType=DOUBLE},
+      </if>
       <if test="siEnergy != null" >
-        SI_energy = #{siEnergy,jdbcType=INTEGER},
+        SI_energy = #{siEnergy,jdbcType=DOUBLE},
       </if>
       <if test="siPortein != null" >
-        SI_portein = #{siPortein,jdbcType=INTEGER},
+        SI_portein = #{siPortein,jdbcType=DOUBLE},
       </if>
       <if test="siVitaminA != null" >
         SI_vitamin_A = #{siVitaminA,jdbcType=INTEGER},
@@ -115,10 +137,12 @@
     </set>
     where SM_id = #{smId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.SetMealInfomation" >
+  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.SetmealInfomation" >
     update setmealinfomation
-    set SI_energy = #{siEnergy,jdbcType=INTEGER},
-      SI_portein = #{siPortein,jdbcType=INTEGER},
+    set SM_name = #{smName,jdbcType=VARCHAR},
+      SI_fat = #{siFat,jdbcType=DOUBLE},
+      SI_energy = #{siEnergy,jdbcType=DOUBLE},
+      SI_portein = #{siPortein,jdbcType=DOUBLE},
       SI_vitamin_A = #{siVitaminA,jdbcType=INTEGER},
       SI_vitamin_B_1 = #{siVitaminB1,jdbcType=DOUBLE},
       SI_vitamin_B_2 = #{siVitaminB2,jdbcType=DOUBLE},

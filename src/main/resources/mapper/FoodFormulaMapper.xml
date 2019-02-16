@@ -16,6 +16,11 @@
     from foodformula
     where FF_id = #{ffId,jdbcType=INTEGER}
   </select>
+  
+  <select id="selectByrecipesId" resultMap="BaseResultMap">
+    select * from foodformula where Recipes_id = #{recipesId,jdbcType=INTEGER}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from foodformula
     where FF_id = #{ffId,jdbcType=INTEGER}
