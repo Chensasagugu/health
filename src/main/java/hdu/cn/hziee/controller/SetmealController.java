@@ -1,9 +1,6 @@
 package hdu.cn.hziee.controller;
 
-import hdu.cn.hziee.model.Food;
-import hdu.cn.hziee.model.FoodFormula;
-import hdu.cn.hziee.model.SetMeal;
-import hdu.cn.hziee.model.SetmealInfomation;
+import hdu.cn.hziee.model.*;
 import hdu.cn.hziee.service.*;
 import net.sf.json.JSONObject;
 import org.junit.Test;
@@ -159,27 +156,23 @@ public class SetmealController {
         List<SetMeal> new_SmIlist = setMealService.SelectBySMid(SM_id);
         for (int m = 0;m<new_SmIlist.size();m++){
             int new_SmIid = old_SmIlist.get(m).getRecipesId();
-            List<FoodFormula> foodFormulaList = foodFormulaService.SelectByRecipesId(new_SmIid);
-            for (int n = 0;n<foodFormulaList.size();n++){
-                int Foodid = foodFormulaList.get(n).getFoodId();
-                double Foodnumber = foodFormulaList.get(n).getFoodNumber();
-                Food food = foodService.selectByPrimaryKey(Foodid);
+            Recipes recipes = recipesService.SelectByPrimaryKey(new_SmIid);
 
                 //计算套餐营养含量
-                Food_fat += food.getFoodFat()*30*Foodnumber;
-                Food_protein += food.getFoodProtein()*Foodnumber;
-                Food_energy += food.getFoodEnergy()*Foodnumber;
-                Food_vitamin_A += food.getFoodVitaminA()*12*Foodnumber;
-                Food_vitamin_B_1 += food.getFoodVitaminB1()*Foodnumber;
-                Food_vitamin_B_2 += food.getFoodVitaminB2()*Foodnumber;
-                Food_vitamin_C += food.getFoodVitaminC()*Foodnumber;
-                Food_vitamin_E += food.getFoodVitaminE()*Foodnumber;
-                Food_Ca += food.getFoodCa()*Foodnumber;
-                Food_Mg += food.getFoodMg()*Foodnumber;
-                Food_Fe += food.getFoodFe()*Foodnumber;
-                Food_Zn += food.getFoodZn()*Foodnumber;
-                Food_cholesterol += food.getFoodCholesterol()*Foodnumber;
-            }
+                Food_fat += recipes.getRecipesFat();
+                Food_protein += recipes.getRecipesProtein();
+                Food_energy += recipes.getRecipesEnergy();
+                Food_vitamin_A += recipes.getRecipesVitaminA();
+                Food_vitamin_B_1 += recipes.getRecipesVitaminB1();
+                Food_vitamin_B_2 += recipes.getRecipesVitaminB2();
+                Food_vitamin_C += recipes.getRecipesVitaminC();
+                Food_vitamin_E += recipes.getRecipesVitaminE();
+                Food_Ca += recipes.getRecipesCa();
+                Food_Mg += recipes.getRecipesMg();
+                Food_Fe += recipes.getRecipesFe();
+                Food_Zn += recipes.getRecipesZn();
+                Food_cholesterol += recipes.getRecipesCholesterol();
+
         }
 
         SetmealInfomation SmI = new SetmealInfomation();

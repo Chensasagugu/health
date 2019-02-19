@@ -30,6 +30,11 @@
     from recipes
     where Recipes_id = #{recipesId,jdbcType=INTEGER}
   </select>
+
+  <select id="findall" resultMap="BaseResultMap">
+    select * from recipes
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from recipes
     where Recipes_id = #{recipesId,jdbcType=INTEGER}

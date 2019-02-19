@@ -3,6 +3,8 @@ package hdu.cn.hziee.dao;
 import hdu.cn.hziee.model.Recipes;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface RecipesMapper {
     int deleteByPrimaryKey(Integer recipesId);
@@ -16,4 +18,6 @@ public interface RecipesMapper {
     int updateByPrimaryKeySelective(Recipes record);
 
     int updateByPrimaryKey(Recipes record);
+
+    List findall();
 }
