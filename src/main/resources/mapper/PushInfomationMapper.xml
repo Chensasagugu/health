@@ -4,13 +4,14 @@
   <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.PushInfomation" >
     <id column="PI_id" property="piId" jdbcType="INTEGER" />
     <result column="User_id" property="userId" jdbcType="INTEGER" />
+    <result column="SM_id" property="smId" jdbcType="INTEGER" />
     <result column="UnderlyingDisease" property="underlyingdisease" jdbcType="VARCHAR" />
     <result column="JournalTips" property="journaltips" jdbcType="VARCHAR" />
     <result column="PI_date" property="piDate" jdbcType="TIMESTAMP" />
     <result column="PI_time" property="piTime" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    PI_id, User_id, UnderlyingDisease, JournalTips, PI_date, PI_time
+    PI_id, User_id, SM_id, UnderlyingDisease, JournalTips, PI_date, PI_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,10 +27,12 @@
     <selectKey resultType="java.lang.Integer" keyProperty="piId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into pushinfomation (User_id, UnderlyingDisease, JournalTips, 
-      PI_date, PI_time)
-    values (#{userId,jdbcType=INTEGER}, #{underlyingdisease,jdbcType=VARCHAR}, #{journaltips,jdbcType=VARCHAR}, 
-      #{piDate,jdbcType=TIMESTAMP}, #{piTime,jdbcType=INTEGER})
+    insert into pushinfomation (User_id, SM_id, UnderlyingDisease, 
+      JournalTips, PI_date, PI_time
+      )
+    values (#{userId,jdbcType=INTEGER}, #{smId,jdbcType=INTEGER}, #{underlyingdisease,jdbcType=VARCHAR}, 
+      #{journaltips,jdbcType=VARCHAR}, #{piDate,jdbcType=TIMESTAMP}, #{piTime,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="hdu.cn.hziee.model.PushInfomation" >
     <selectKey resultType="java.lang.Integer" keyProperty="piId" order="AFTER" >
@@ -39,6 +42,9 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         User_id,
+      </if>
+      <if test="smId != null" >
+        SM_id,
       </if>
       <if test="underlyingdisease != null" >
         UnderlyingDisease,
@@ -56,6 +62,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="smId != null" >
+        #{smId,jdbcType=INTEGER},
       </if>
       <if test="underlyingdisease != null" >
         #{underlyingdisease,jdbcType=VARCHAR},
@@ -77,6 +86,9 @@
       <if test="userId != null" >
         User_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="smId != null" >
+        SM_id = #{smId,jdbcType=INTEGER},
+      </if>
       <if test="underlyingdisease != null" >
         UnderlyingDisease = #{underlyingdisease,jdbcType=VARCHAR},
       </if>
@@ -95,6 +107,7 @@
   <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.PushInfomation" >
     update pushinfomation
     set User_id = #{userId,jdbcType=INTEGER},
+      SM_id = #{smId,jdbcType=INTEGER},
       UnderlyingDisease = #{underlyingdisease,jdbcType=VARCHAR},
       JournalTips = #{journaltips,jdbcType=VARCHAR},
       PI_date = #{piDate,jdbcType=TIMESTAMP},

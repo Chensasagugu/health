@@ -12,4 +12,8 @@ public class SetmealInfomationService {
     SetmealInfomationMapper mapper;
 
     public int insert(SetmealInfomation SmI){ return mapper.insert(SmI);}
+
+    public SetmealInfomation SelectByPrimaryKey(int SM_id){ return mapper.selectByPrimaryKey(SM_id); }
+
+    public int UpdateByPrimaryKeySelective(SetmealInfomation SmI){ return mapper.updateByPrimaryKeySelective(SmI); }
 }

@@ -11,11 +11,18 @@
     <result column="Food_vitamin_B_1" property="foodVitaminB1" jdbcType="DOUBLE" />
     <result column="Food_vitamin_B_2" property="foodVitaminB2" jdbcType="DOUBLE" />
     <result column="Food_vitamin_C" property="foodVitaminC" jdbcType="INTEGER" />
+    <result column="Food_vitamin_E" property="foodVitaminE" jdbcType="DOUBLE" />
+    <result column="Food_Ca" property="foodCa" jdbcType="DOUBLE" />
+    <result column="Food_Mg" property="foodMg" jdbcType="DOUBLE" />
+    <result column="Food_Fe" property="foodFe" jdbcType="DOUBLE" />
+    <result column="Food_Zn" property="foodZn" jdbcType="DOUBLE" />
+    <result column="Food_cholesterol" property="foodCholesterol" jdbcType="DOUBLE" />
     <result column="Food_margin" property="foodMargin" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     Food_id, Food_name, Food_fat, Food_protein, Food_energy, Food_vitamin_A, Food_vitamin_B_1, 
-    Food_vitamin_B_2, Food_vitamin_C, Food_margin
+    Food_vitamin_B_2, Food_vitamin_C, Food_vitamin_E, Food_Ca, Food_Mg, Food_Fe, Food_Zn, 
+    Food_cholesterol, Food_margin
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -33,11 +40,15 @@
     </selectKey>
     insert into food (Food_name, Food_fat, Food_protein, 
       Food_energy, Food_vitamin_A, Food_vitamin_B_1, 
-      Food_vitamin_B_2, Food_vitamin_C, Food_margin
+      Food_vitamin_B_2, Food_vitamin_C, Food_vitamin_E, 
+      Food_Ca, Food_Mg, Food_Fe, 
+      Food_Zn, Food_cholesterol, Food_margin
       )
     values (#{foodName,jdbcType=VARCHAR}, #{foodFat,jdbcType=DOUBLE}, #{foodProtein,jdbcType=DOUBLE}, 
       #{foodEnergy,jdbcType=DOUBLE}, #{foodVitaminA,jdbcType=DOUBLE}, #{foodVitaminB1,jdbcType=DOUBLE}, 
-      #{foodVitaminB2,jdbcType=DOUBLE}, #{foodVitaminC,jdbcType=INTEGER}, #{foodMargin,jdbcType=INTEGER}
+      #{foodVitaminB2,jdbcType=DOUBLE}, #{foodVitaminC,jdbcType=INTEGER}, #{foodVitaminE,jdbcType=DOUBLE}, 
+      #{foodCa,jdbcType=DOUBLE}, #{foodMg,jdbcType=DOUBLE}, #{foodFe,jdbcType=DOUBLE}, 
+      #{foodZn,jdbcType=DOUBLE}, #{foodCholesterol,jdbcType=DOUBLE}, #{foodMargin,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="hdu.cn.hziee.model.Food" >
@@ -70,6 +81,24 @@
       <if test="foodVitaminC != null" >
         Food_vitamin_C,
       </if>
+      <if test="foodVitaminE != null" >
+        Food_vitamin_E,
+      </if>
+      <if test="foodCa != null" >
+        Food_Ca,
+      </if>
+      <if test="foodMg != null" >
+        Food_Mg,
+      </if>
+      <if test="foodFe != null" >
+        Food_Fe,
+      </if>
+      <if test="foodZn != null" >
+        Food_Zn,
+      </if>
+      <if test="foodCholesterol != null" >
+        Food_cholesterol,
+      </if>
       <if test="foodMargin != null" >
         Food_margin,
       </if>
@@ -98,6 +127,24 @@
       </if>
       <if test="foodVitaminC != null" >
         #{foodVitaminC,jdbcType=INTEGER},
+      </if>
+      <if test="foodVitaminE != null" >
+        #{foodVitaminE,jdbcType=DOUBLE},
+      </if>
+      <if test="foodCa != null" >
+        #{foodCa,jdbcType=DOUBLE},
+      </if>
+      <if test="foodMg != null" >
+        #{foodMg,jdbcType=DOUBLE},
+      </if>
+      <if test="foodFe != null" >
+        #{foodFe,jdbcType=DOUBLE},
+      </if>
+      <if test="foodZn != null" >
+        #{foodZn,jdbcType=DOUBLE},
+      </if>
+      <if test="foodCholesterol != null" >
+        #{foodCholesterol,jdbcType=DOUBLE},
       </if>
       <if test="foodMargin != null" >
         #{foodMargin,jdbcType=INTEGER},
@@ -131,6 +178,24 @@
       <if test="foodVitaminC != null" >
         Food_vitamin_C = #{foodVitaminC,jdbcType=INTEGER},
       </if>
+      <if test="foodVitaminE != null" >
+        Food_vitamin_E = #{foodVitaminE,jdbcType=DOUBLE},
+      </if>
+      <if test="foodCa != null" >
+        Food_Ca = #{foodCa,jdbcType=DOUBLE},
+      </if>
+      <if test="foodMg != null" >
+        Food_Mg = #{foodMg,jdbcType=DOUBLE},
+      </if>
+      <if test="foodFe != null" >
+        Food_Fe = #{foodFe,jdbcType=DOUBLE},
+      </if>
+      <if test="foodZn != null" >
+        Food_Zn = #{foodZn,jdbcType=DOUBLE},
+      </if>
+      <if test="foodCholesterol != null" >
+        Food_cholesterol = #{foodCholesterol,jdbcType=DOUBLE},
+      </if>
       <if test="foodMargin != null" >
         Food_margin = #{foodMargin,jdbcType=INTEGER},
       </if>
@@ -147,6 +212,12 @@
       Food_vitamin_B_1 = #{foodVitaminB1,jdbcType=DOUBLE},
       Food_vitamin_B_2 = #{foodVitaminB2,jdbcType=DOUBLE},
       Food_vitamin_C = #{foodVitaminC,jdbcType=INTEGER},
+      Food_vitamin_E = #{foodVitaminE,jdbcType=DOUBLE},
+      Food_Ca = #{foodCa,jdbcType=DOUBLE},
+      Food_Mg = #{foodMg,jdbcType=DOUBLE},
+      Food_Fe = #{foodFe,jdbcType=DOUBLE},
+      Food_Zn = #{foodZn,jdbcType=DOUBLE},
+      Food_cholesterol = #{foodCholesterol,jdbcType=DOUBLE},
       Food_margin = #{foodMargin,jdbcType=INTEGER}
     where Food_id = #{foodId,jdbcType=INTEGER}
   </update>
