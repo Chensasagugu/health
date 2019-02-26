@@ -1,18 +1,13 @@
-package hdu.cn.hziee.controller;
+package hdu.cn.hziee.tool;
 
 import hdu.cn.hziee.model.*;
 import hdu.cn.hziee.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-@RequestMapping("illness")
-public class IllnessController {
+public class GetRemoveSetmeal {
 
     @Autowired
     UserIllnessService userIllnessService;
@@ -29,8 +24,14 @@ public class IllnessController {
     @Autowired
     SetMealService setMealService;
 
-    @RequestMapping("GetRemoveSetmeal")
-    public ArrayList GetRemoveSetmeal(@RequestParam("userid") int user_id){
+    /*
+    * 传进参数：User_id
+    * 返回参数：ArrayList SetmealIdlist
+    *
+    * 功能：获取用户不能食用的套餐集合
+    * */
+
+    public ArrayList GetRemoveSetmeal(int user_id){
         List<UserIllness> UINlist = userIllnessService.SelectByUserid(user_id);
         if (UINlist.size() != 0){
             ArrayList<Integer> RecipesIdlist = new ArrayList<>();
@@ -75,4 +76,5 @@ public class IllnessController {
 
 
     }
+
 }
