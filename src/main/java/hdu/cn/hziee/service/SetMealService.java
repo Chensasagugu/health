@@ -18,4 +18,6 @@ public class SetMealService {
     public List SelectBySMid(int SM_id){ return mapper.selectBySMid(SM_id); }
 
     public int DeleteByRecipesId(SetMeal SM){ return mapper.deleteByRecipesId(SM); }
+
+    public SetMeal SelectByRecipesid(int recipesId){ return mapper.selectByRecipesid(recipesId); }
 }

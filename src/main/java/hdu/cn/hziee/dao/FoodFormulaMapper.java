@@ -20,4 +20,6 @@ public interface FoodFormulaMapper {
     int updateByPrimaryKey(FoodFormula record);
 
     List selectByrecipesId(Integer recipesId);
+
+    List selectByFoodid(int foodId);
 }
