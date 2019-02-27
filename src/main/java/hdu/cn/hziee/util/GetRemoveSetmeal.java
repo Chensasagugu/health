@@ -1,4 +1,4 @@
-package hdu.cn.hziee.tool;
+package hdu.cn.hziee.util;
 
 import hdu.cn.hziee.model.*;
 import hdu.cn.hziee.service.*;
