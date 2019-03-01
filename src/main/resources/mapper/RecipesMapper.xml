@@ -5,9 +5,24 @@
     <id column="Recipes_id" property="recipesId" jdbcType="INTEGER" />
     <result column="Recipes_name" property="recipesName" jdbcType="VARCHAR" />
     <result column="Recipes_type" property="recipesType" jdbcType="VARCHAR" />
+    <result column="Recipes_fat" property="recipesFat" jdbcType="DOUBLE" />
+    <result column="Recipes_protein" property="recipesProtein" jdbcType="DOUBLE" />
+    <result column="Recipes_energy" property="recipesEnergy" jdbcType="DOUBLE" />
+    <result column="Recipes_vitamin_A" property="recipesVitaminA" jdbcType="DOUBLE" />
+    <result column="Recipes_vitamin_B_1" property="recipesVitaminB1" jdbcType="DOUBLE" />
+    <result column="Recipes_vitamin_B_2" property="recipesVitaminB2" jdbcType="DOUBLE" />
+    <result column="Recipes_vitamin_C" property="recipesVitaminC" jdbcType="DOUBLE" />
+    <result column="Recipes_vitamin_E" property="recipesVitaminE" jdbcType="DOUBLE" />
+    <result column="Recipes_Ca" property="recipesCa" jdbcType="DOUBLE" />
+    <result column="Recipes_Mg" property="recipesMg" jdbcType="DOUBLE" />
+    <result column="Recipes_Fe" property="recipesFe" jdbcType="DOUBLE" />
+    <result column="Recipes_Zn" property="recipesZn" jdbcType="DOUBLE" />
+    <result column="Recipes_cholesterol" property="recipesCholesterol" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    Recipes_id, Recipes_name, Recipes_type
+    Recipes_id, Recipes_name, Recipes_type, Recipes_fat, Recipes_protein, Recipes_energy, 
+    Recipes_vitamin_A, Recipes_vitamin_B_1, Recipes_vitamin_B_2, Recipes_vitamin_C, Recipes_vitamin_E, 
+    Recipes_Ca, Recipes_Mg, Recipes_Fe, Recipes_Zn, Recipes_cholesterol
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -15,6 +30,11 @@
     from recipes
     where Recipes_id = #{recipesId,jdbcType=INTEGER}
   </select>
+
+  <select id="findall" resultMap="BaseResultMap">
+    select * from recipes
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from recipes
     where Recipes_id = #{recipesId,jdbcType=INTEGER}
@@ -23,8 +43,18 @@
     <selectKey resultType="java.lang.Integer" keyProperty="recipesId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into recipes (Recipes_name, Recipes_type)
-    values (#{recipesName,jdbcType=VARCHAR}, #{recipesType,jdbcType=VARCHAR})
+    insert into recipes (Recipes_name, Recipes_type, Recipes_fat, 
+      Recipes_protein, Recipes_energy, Recipes_vitamin_A, 
+      Recipes_vitamin_B_1, Recipes_vitamin_B_2, Recipes_vitamin_C, 
+      Recipes_vitamin_E, Recipes_Ca, Recipes_Mg, 
+      Recipes_Fe, Recipes_Zn, Recipes_cholesterol
+      )
+    values (#{recipesName,jdbcType=VARCHAR}, #{recipesType,jdbcType=VARCHAR}, #{recipesFat,jdbcType=DOUBLE}, 
+      #{recipesProtein,jdbcType=DOUBLE}, #{recipesEnergy,jdbcType=DOUBLE}, #{recipesVitaminA,jdbcType=DOUBLE}, 
+      #{recipesVitaminB1,jdbcType=DOUBLE}, #{recipesVitaminB2,jdbcType=DOUBLE}, #{recipesVitaminC,jdbcType=DOUBLE}, 
+      #{recipesVitaminE,jdbcType=DOUBLE}, #{recipesCa,jdbcType=DOUBLE}, #{recipesMg,jdbcType=DOUBLE}, 
+      #{recipesFe,jdbcType=DOUBLE}, #{recipesZn,jdbcType=DOUBLE}, #{recipesCholesterol,jdbcType=DOUBLE}
+      )
   </insert>
   <insert id="insertSelective" parameterType="hdu.cn.hziee.model.Recipes" >
     <selectKey resultType="java.lang.Integer" keyProperty="recipesId" order="AFTER" >
@@ -38,6 +68,45 @@
       <if test="recipesType != null" >
         Recipes_type,
       </if>
+      <if test="recipesFat != null" >
+        Recipes_fat,
+      </if>
+      <if test="recipesProtein != null" >
+        Recipes_protein,
+      </if>
+      <if test="recipesEnergy != null" >
+        Recipes_energy,
+      </if>
+      <if test="recipesVitaminA != null" >
+        Recipes_vitamin_A,
+      </if>
+      <if test="recipesVitaminB1 != null" >
+        Recipes_vitamin_B_1,
+      </if>
+      <if test="recipesVitaminB2 != null" >
+        Recipes_vitamin_B_2,
+      </if>
+      <if test="recipesVitaminC != null" >
+        Recipes_vitamin_C,
+      </if>
+      <if test="recipesVitaminE != null" >
+        Recipes_vitamin_E,
+      </if>
+      <if test="recipesCa != null" >
+        Recipes_Ca,
+      </if>
+      <if test="recipesMg != null" >
+        Recipes_Mg,
+      </if>
+      <if test="recipesFe != null" >
+        Recipes_Fe,
+      </if>
+      <if test="recipesZn != null" >
+        Recipes_Zn,
+      </if>
+      <if test="recipesCholesterol != null" >
+        Recipes_cholesterol,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="recipesName != null" >
@@ -45,6 +114,45 @@
       </if>
       <if test="recipesType != null" >
         #{recipesType,jdbcType=VARCHAR},
+      </if>
+      <if test="recipesFat != null" >
+        #{recipesFat,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesProtein != null" >
+        #{recipesProtein,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesEnergy != null" >
+        #{recipesEnergy,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesVitaminA != null" >
+        #{recipesVitaminA,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesVitaminB1 != null" >
+        #{recipesVitaminB1,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesVitaminB2 != null" >
+        #{recipesVitaminB2,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesVitaminC != null" >
+        #{recipesVitaminC,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesVitaminE != null" >
+        #{recipesVitaminE,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesCa != null" >
+        #{recipesCa,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesMg != null" >
+        #{recipesMg,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesFe != null" >
+        #{recipesFe,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesZn != null" >
+        #{recipesZn,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesCholesterol != null" >
+        #{recipesCholesterol,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -57,13 +165,65 @@
       <if test="recipesType != null" >
         Recipes_type = #{recipesType,jdbcType=VARCHAR},
       </if>
+      <if test="recipesFat != null" >
+        Recipes_fat = #{recipesFat,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesProtein != null" >
+        Recipes_protein = #{recipesProtein,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesEnergy != null" >
+        Recipes_energy = #{recipesEnergy,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesVitaminA != null" >
+        Recipes_vitamin_A = #{recipesVitaminA,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesVitaminB1 != null" >
+        Recipes_vitamin_B_1 = #{recipesVitaminB1,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesVitaminB2 != null" >
+        Recipes_vitamin_B_2 = #{recipesVitaminB2,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesVitaminC != null" >
+        Recipes_vitamin_C = #{recipesVitaminC,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesVitaminE != null" >
+        Recipes_vitamin_E = #{recipesVitaminE,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesCa != null" >
+        Recipes_Ca = #{recipesCa,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesMg != null" >
+        Recipes_Mg = #{recipesMg,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesFe != null" >
+        Recipes_Fe = #{recipesFe,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesZn != null" >
+        Recipes_Zn = #{recipesZn,jdbcType=DOUBLE},
+      </if>
+      <if test="recipesCholesterol != null" >
+        Recipes_cholesterol = #{recipesCholesterol,jdbcType=DOUBLE},
+      </if>
     </set>
     where Recipes_id = #{recipesId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.Recipes" >
     update recipes
     set Recipes_name = #{recipesName,jdbcType=VARCHAR},
-      Recipes_type = #{recipesType,jdbcType=VARCHAR}
+      Recipes_type = #{recipesType,jdbcType=VARCHAR},
+      Recipes_fat = #{recipesFat,jdbcType=DOUBLE},
+      Recipes_protein = #{recipesProtein,jdbcType=DOUBLE},
+      Recipes_energy = #{recipesEnergy,jdbcType=DOUBLE},
+      Recipes_vitamin_A = #{recipesVitaminA,jdbcType=DOUBLE},
+      Recipes_vitamin_B_1 = #{recipesVitaminB1,jdbcType=DOUBLE},
+      Recipes_vitamin_B_2 = #{recipesVitaminB2,jdbcType=DOUBLE},
+      Recipes_vitamin_C = #{recipesVitaminC,jdbcType=DOUBLE},
+      Recipes_vitamin_E = #{recipesVitaminE,jdbcType=DOUBLE},
+      Recipes_Ca = #{recipesCa,jdbcType=DOUBLE},
+      Recipes_Mg = #{recipesMg,jdbcType=DOUBLE},
+      Recipes_Fe = #{recipesFe,jdbcType=DOUBLE},
+      Recipes_Zn = #{recipesZn,jdbcType=DOUBLE},
+      Recipes_cholesterol = #{recipesCholesterol,jdbcType=DOUBLE}
     where Recipes_id = #{recipesId,jdbcType=INTEGER}
   </update>
 </mapper>

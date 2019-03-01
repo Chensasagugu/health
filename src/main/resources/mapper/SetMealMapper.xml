@@ -10,38 +10,50 @@
     SM_number, SM_id, Recipes_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from setmeal
     where SM_number = #{smNumber,jdbcType=INTEGER}
   </select>
+
+  <select id="selectBySMid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from setmeal where SM_id = #{smId,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from setmeal
     where SM_number = #{smNumber,jdbcType=INTEGER}
   </delete>
+
+  <delete id="deleteByRecipesId" parameterType="hdu.cn.hziee.model.SetMeal">
+    delete from setmeal
+    where SM_id = #{smId,jdbcType=INTEGER}
+    AND Recipes_id = #{recipesId,jdbcType=INTEGER}
+  </delete>
+
   <insert id="insert" parameterType="hdu.cn.hziee.model.SetMeal" >
-    <selectKey resultType="java.lang.Integer" keyProperty="smId" order="AFTER" >
+    <selectKey resultType="java.lang.Integer" keyProperty="smNumber" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into setmeal (SM_number, Recipes_id)
-    values (#{smNumber,jdbcType=INTEGER}, #{recipesId,jdbcType=INTEGER})
+    insert into setmeal (SM_id, Recipes_id)
+    values (#{smId,jdbcType=INTEGER}, #{recipesId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="hdu.cn.hziee.model.SetMeal" >
-    <selectKey resultType="java.lang.Integer" keyProperty="smId" order="AFTER" >
+    <selectKey resultType="java.lang.Integer" keyProperty="smNumber" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into setmeal
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="smNumber != null" >
-        SM_number,
+      <if test="smId != null" >
+        SM_id,
       </if>
       <if test="recipesId != null" >
         Recipes_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="smNumber != null" >
-        #{smNumber,jdbcType=INTEGER},
+      <if test="smId != null" >
+        #{smId,jdbcType=INTEGER},
       </if>
       <if test="recipesId != null" >
         #{recipesId,jdbcType=INTEGER},
