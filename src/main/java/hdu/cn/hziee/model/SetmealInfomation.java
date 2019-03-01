@@ -13,11 +13,23 @@ public class SetmealInfomation {
 
     private Integer siVitaminA;
 
-    private Double siVitaminB1;
+    private Integer siVitaminB1;
 
-    private Double siVitaminB2;
+    private Integer siVitaminB2;
 
     private Integer siVitaminC;
+
+    private Integer siVitaminE;
+
+    private Integer siMg;
+
+    private Integer siCa;
+
+    private Integer siZn;
+
+    private Integer siFe;
+
+    private Integer siCholesterol;
 
     private Integer rightTime;
 
@@ -69,19 +81,19 @@ public class SetmealInfomation {
         this.siVitaminA = siVitaminA;
     }
 
-    public Double getSiVitaminB1() {
+    public Integer getSiVitaminB1() {
         return siVitaminB1;
     }
 
-    public void setSiVitaminB1(Double siVitaminB1) {
+    public void setSiVitaminB1(Integer siVitaminB1) {
         this.siVitaminB1 = siVitaminB1;
     }
 
-    public Double getSiVitaminB2() {
+    public Integer getSiVitaminB2() {
         return siVitaminB2;
     }
 
-    public void setSiVitaminB2(Double siVitaminB2) {
+    public void setSiVitaminB2(Integer siVitaminB2) {
         this.siVitaminB2 = siVitaminB2;
     }
 
@@ -91,6 +103,54 @@ public class SetmealInfomation {
 
     public void setSiVitaminC(Integer siVitaminC) {
         this.siVitaminC = siVitaminC;
+    }
+
+    public Integer getSiVitaminE() {
+        return siVitaminE;
+    }
+
+    public void setSiVitaminE(Integer siVitaminE) {
+        this.siVitaminE = siVitaminE;
+    }
+
+    public Integer getSiMg() {
+        return siMg;
+    }
+
+    public void setSiMg(Integer siMg) {
+        this.siMg = siMg;
+    }
+
+    public Integer getSiCa() {
+        return siCa;
+    }
+
+    public void setSiCa(Integer siCa) {
+        this.siCa = siCa;
+    }
+
+    public Integer getSiZn() {
+        return siZn;
+    }
+
+    public void setSiZn(Integer siZn) {
+        this.siZn = siZn;
+    }
+
+    public Integer getSiFe() {
+        return siFe;
+    }
+
+    public void setSiFe(Integer siFe) {
+        this.siFe = siFe;
+    }
+
+    public Integer getSiCholesterol() {
+        return siCholesterol;
+    }
+
+    public void setSiCholesterol(Integer siCholesterol) {
+        this.siCholesterol = siCholesterol;
     }
 
     public Integer getRightTime() {

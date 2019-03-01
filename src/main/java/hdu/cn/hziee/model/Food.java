@@ -19,6 +19,18 @@ public class Food {
 
     private Integer foodVitaminC;
 
+    private Double foodVitaminE;
+
+    private Double foodCa;
+
+    private Double foodMg;
+
+    private Double foodFe;
+
+    private Double foodZn;
+
+    private Double foodCholesterol;
+
     private Integer foodMargin;
 
     public Integer getFoodId() {
@@ -91,6 +103,54 @@ public class Food {
 
     public void setFoodVitaminC(Integer foodVitaminC) {
         this.foodVitaminC = foodVitaminC;
+    }
+
+    public Double getFoodVitaminE() {
+        return foodVitaminE;
+    }
+
+    public void setFoodVitaminE(Double foodVitaminE) {
+        this.foodVitaminE = foodVitaminE;
+    }
+
+    public Double getFoodCa() {
+        return foodCa;
+    }
+
+    public void setFoodCa(Double foodCa) {
+        this.foodCa = foodCa;
+    }
+
+    public Double getFoodMg() {
+        return foodMg;
+    }
+
+    public void setFoodMg(Double foodMg) {
+        this.foodMg = foodMg;
+    }
+
+    public Double getFoodFe() {
+        return foodFe;
+    }
+
+    public void setFoodFe(Double foodFe) {
+        this.foodFe = foodFe;
+    }
+
+    public Double getFoodZn() {
+        return foodZn;
+    }
+
+    public void setFoodZn(Double foodZn) {
+        this.foodZn = foodZn;
+    }
+
+    public Double getFoodCholesterol() {
+        return foodCholesterol;
+    }
+
+    public void setFoodCholesterol(Double foodCholesterol) {
+        this.foodCholesterol = foodCholesterol;
     }
 
     public Integer getFoodMargin() {

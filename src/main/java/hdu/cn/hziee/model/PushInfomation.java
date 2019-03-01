@@ -7,6 +7,8 @@ public class PushInfomation {
 
     private Integer userId;
 
+    private Integer smId;
+
     private String underlyingdisease;
 
     private String journaltips;
@@ -29,6 +31,14 @@ public class PushInfomation {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getSmId() {
+        return smId;
+    }
+
+    public void setSmId(Integer smId) {
+        this.smId = smId;
     }
 
     public String getUnderlyingdisease() {
