@@ -155,7 +155,7 @@ public class SetmealController {
 
         List<SetMeal> new_SmIlist = setMealService.SelectBySMid(SM_id);
         for (int m = 0;m<new_SmIlist.size();m++){
-            int new_SmIid = old_SmIlist.get(m).getRecipesId();
+            int new_SmIid = new_SmIlist.get(m).getRecipesId();
             Recipes recipes = recipesService.SelectByPrimaryKey(new_SmIid);
 
             //计算套餐营养含量
@@ -245,13 +245,13 @@ public class SetmealController {
 
         switch (time){
             case 1:
-                ratio = 0.35;
+                ratio = 0.3;
                 break;
             case 2:
                 ratio = 0.4;
                 break;
             case 3:
-                ratio = 0.25;
+                ratio = 0.3;
                 break;
         }
 
