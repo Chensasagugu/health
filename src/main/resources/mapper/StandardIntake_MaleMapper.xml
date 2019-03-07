@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hdu.cn.hziee.dao.StandardIntake_MaleMapper" >
-  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.StandardIntake_Male" >
+<mapper namespace="cn.cch.healthy.dao.StandardIntake_MaleMapper" >
+  <resultMap id="BaseResultMap" type="cn.cch.healthy.model.StandardIntake_Male" >
     <id column="SI_id" property="siId" jdbcType="INTEGER" />
     <result column="SI_age" property="siAge" jdbcType="INTEGER" />
     <result column="SI_energy" property="siEnergy" jdbcType="INTEGER" />
@@ -26,7 +26,7 @@
     delete from standardintake_male
     where SI_id = #{siId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="hdu.cn.hziee.model.StandardIntake_Male" >
+  <insert id="insert" parameterType="cn.cch.healthy.model.StandardIntake_Male" >
     <selectKey resultType="java.lang.Integer" keyProperty="siId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -37,7 +37,7 @@
       #{siVitaminA,jdbcType=INTEGER}, #{siVitaminB1,jdbcType=DOUBLE}, #{siVitaminB2,jdbcType=DOUBLE}, 
       #{siVitaminC,jdbcType=INTEGER}, #{siPhysical,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.StandardIntake_Male" >
+  <insert id="insertSelective" parameterType="cn.cch.healthy.model.StandardIntake_Male" >
     <selectKey resultType="java.lang.Integer" keyProperty="siId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -95,7 +95,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.StandardIntake_Male" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cch.healthy.model.StandardIntake_Male" >
     update standardintake_male
     <set >
       <if test="siAge != null" >
@@ -125,7 +125,7 @@
     </set>
     where SI_id = #{siId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.StandardIntake_Male" >
+  <update id="updateByPrimaryKey" parameterType="cn.cch.healthy.model.StandardIntake_Male" >
     update standardintake_male
     set SI_age = #{siAge,jdbcType=INTEGER},
       SI_energy = #{siEnergy,jdbcType=INTEGER},

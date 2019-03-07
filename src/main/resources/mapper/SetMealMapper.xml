@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hdu.cn.hziee.dao.SetMealMapper" >
-  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.SetMeal" >
+<mapper namespace="cn.cch.healthy.dao.SetMealMapper" >
+  <resultMap id="BaseResultMap" type="cn.cch.healthy.model.SetMeal" >
     <id column="SM_number" property="smNumber" jdbcType="INTEGER" />
     <result column="SM_id" property="smId" jdbcType="INTEGER" />
     <result column="Recipes_id" property="recipesId" jdbcType="INTEGER" />
@@ -29,20 +29,20 @@
     where SM_number = #{smNumber,jdbcType=INTEGER}
   </delete>
 
-  <delete id="deleteByRecipesId" parameterType="hdu.cn.hziee.model.SetMeal">
+  <delete id="deleteByRecipesId" parameterType="cn.cch.healthy.model.SetMeal">
     delete from setmeal
     where SM_id = #{smId,jdbcType=INTEGER}
     AND Recipes_id = #{recipesId,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" parameterType="hdu.cn.hziee.model.SetMeal" >
+  <insert id="insert" parameterType="cn.cch.healthy.model.SetMeal" >
     <selectKey resultType="java.lang.Integer" keyProperty="smNumber" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into setmeal (SM_id, Recipes_id)
     values (#{smId,jdbcType=INTEGER}, #{recipesId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.SetMeal" >
+  <insert id="insertSelective" parameterType="cn.cch.healthy.model.SetMeal" >
     <selectKey resultType="java.lang.Integer" keyProperty="smNumber" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.SetMeal" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cch.healthy.model.SetMeal" >
     update setmeal
     <set >
       <if test="smId != null" >
@@ -76,7 +76,7 @@
     </set>
     where SM_number = #{smNumber,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.SetMeal" >
+  <update id="updateByPrimaryKey" parameterType="cn.cch.healthy.model.SetMeal" >
     update setmeal
     set SM_id = #{smId,jdbcType=INTEGER},
       Recipes_id = #{recipesId,jdbcType=INTEGER}

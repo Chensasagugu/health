@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hdu.cn.hziee.dao.SetmealInfomationMapper" >
-  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.SetmealInfomation" >
+<mapper namespace="cn.cch.healthy.dao.SetmealInfomationMapper" >
+  <resultMap id="BaseResultMap" type="cn.cch.healthy.model.SetmealInfomation" >
     <id column="SM_id" property="smId" jdbcType="INTEGER" />
     <result column="SM_name" property="smName" jdbcType="VARCHAR" />
     <result column="SI_fat" property="siFat" jdbcType="DOUBLE" />
@@ -39,7 +39,7 @@
     delete from setmealinfomation
     where SM_id = #{smId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="hdu.cn.hziee.model.SetmealInfomation" >
+  <insert id="insert" parameterType="cn.cch.healthy.model.SetmealInfomation" >
     <selectKey resultType="java.lang.Integer" keyProperty="smId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -54,7 +54,7 @@
       #{siMg,jdbcType=INTEGER}, #{siCa,jdbcType=INTEGER}, #{siZn,jdbcType=INTEGER}, #{siFe,jdbcType=INTEGER}, 
       #{siCholesterol,jdbcType=INTEGER}, #{rightTime,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.SetmealInfomation" >
+  <insert id="insertSelective" parameterType="cn.cch.healthy.model.SetmealInfomation" >
     <selectKey resultType="java.lang.Integer" keyProperty="smId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -154,7 +154,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.SetmealInfomation" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cch.healthy.model.SetmealInfomation" >
     update setmealinfomation
     <set >
       <if test="smName != null" >
@@ -205,7 +205,7 @@
     </set>
     where SM_id = #{smId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.SetmealInfomation" >
+  <update id="updateByPrimaryKey" parameterType="cn.cch.healthy.model.SetmealInfomation" >
     update setmealinfomation
     set SM_name = #{smName,jdbcType=VARCHAR},
       SI_fat = #{siFat,jdbcType=DOUBLE},

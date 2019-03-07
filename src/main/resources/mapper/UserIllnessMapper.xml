@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hdu.cn.hziee.dao.UserIllnessMapper" >
-  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.UserIllness" >
+<mapper namespace="cn.cch.healthy.dao.UserIllnessMapper" >
+  <resultMap id="BaseResultMap" type="cn.cch.healthy.model.UserIllness" >
     <id column="UIN_id" property="uinId" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="ill_id" property="illId" jdbcType="INTEGER" />
@@ -30,20 +30,20 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
 
-  <delete id="deleteByUserIll" parameterType="hdu.cn.hziee.model.UserIllness">
+  <delete id="deleteByUserIll" parameterType="cn.cch.healthy.model.UserIllness">
     delete from userillness
     where user_id = #{userId,jdbcType=INTEGER} and
     ill_id = #{illId,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" parameterType="hdu.cn.hziee.model.UserIllness" >
+  <insert id="insert" parameterType="cn.cch.healthy.model.UserIllness" >
     <selectKey resultType="java.lang.Integer" keyProperty="uinId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into userillness (user_id, ill_id)
     values (#{userId,jdbcType=INTEGER}, #{illId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.UserIllness" >
+  <insert id="insertSelective" parameterType="cn.cch.healthy.model.UserIllness" >
     <selectKey resultType="java.lang.Integer" keyProperty="uinId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -65,7 +65,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.UserIllness" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cch.healthy.model.UserIllness" >
     update userillness
     <set >
       <if test="userId != null" >
@@ -77,7 +77,7 @@
     </set>
     where UIN_id = #{uinId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.UserIllness" >
+  <update id="updateByPrimaryKey" parameterType="cn.cch.healthy.model.UserIllness" >
     update userillness
     set user_id = #{userId,jdbcType=INTEGER},
       ill_id = #{illId,jdbcType=INTEGER}

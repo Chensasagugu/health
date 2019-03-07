@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hdu.cn.hziee.dao.FoodMapper" >
-  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.Food" >
+<mapper namespace="cn.cch.healthy.dao.FoodMapper" >
+  <resultMap id="BaseResultMap" type="cn.cch.healthy.model.Food" >
     <id column="Food_id" property="foodId" jdbcType="INTEGER" />
     <result column="Food_name" property="foodName" jdbcType="VARCHAR" />
     <result column="Food_fat" property="foodFat" jdbcType="DOUBLE" />
@@ -34,7 +34,7 @@
     delete from food
     where Food_id = #{foodId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="hdu.cn.hziee.model.Food" >
+  <insert id="insert" parameterType="cn.cch.healthy.model.Food" >
     <selectKey resultType="java.lang.Integer" keyProperty="foodId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -51,7 +51,7 @@
       #{foodZn,jdbcType=DOUBLE}, #{foodCholesterol,jdbcType=DOUBLE}, #{foodMargin,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.Food" >
+  <insert id="insertSelective" parameterType="cn.cch.healthy.model.Food" >
     <selectKey resultType="java.lang.Integer" keyProperty="foodId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -151,7 +151,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.Food" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cch.healthy.model.Food" >
     update food
     <set >
       <if test="foodName != null" >
@@ -202,7 +202,7 @@
     </set>
     where Food_id = #{foodId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.Food" >
+  <update id="updateByPrimaryKey" parameterType="cn.cch.healthy.model.Food" >
     update food
     set Food_name = #{foodName,jdbcType=VARCHAR},
       Food_fat = #{foodFat,jdbcType=DOUBLE},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hdu.cn.hziee.dao.RecipesMapper" >
-  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.Recipes" >
+<mapper namespace="cn.cch.healthy.dao.RecipesMapper" >
+  <resultMap id="BaseResultMap" type="cn.cch.healthy.model.Recipes" >
     <id column="Recipes_id" property="recipesId" jdbcType="INTEGER" />
     <result column="Recipes_name" property="recipesName" jdbcType="VARCHAR" />
     <result column="Recipes_type" property="recipesType" jdbcType="VARCHAR" />
@@ -41,7 +41,7 @@
     delete from recipes
     where Recipes_id = #{recipesId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="hdu.cn.hziee.model.Recipes" >
+  <insert id="insert" parameterType="cn.cch.healthy.model.Recipes" >
     <selectKey resultType="java.lang.Integer" keyProperty="recipesId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -58,7 +58,7 @@
       #{recipesFe,jdbcType=DOUBLE}, #{recipesZn,jdbcType=DOUBLE}, #{recipesCholesterol,jdbcType=DOUBLE}
       )
   </insert>
-  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.Recipes" >
+  <insert id="insertSelective" parameterType="cn.cch.healthy.model.Recipes" >
     <selectKey resultType="java.lang.Integer" keyProperty="recipesId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.Recipes" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cch.healthy.model.Recipes" >
     update recipes
     <set >
       <if test="recipesName != null" >
@@ -209,7 +209,7 @@
     </set>
     where Recipes_id = #{recipesId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.Recipes" >
+  <update id="updateByPrimaryKey" parameterType="cn.cch.healthy.model.Recipes" >
     update recipes
     set Recipes_name = #{recipesName,jdbcType=VARCHAR},
       Recipes_type = #{recipesType,jdbcType=VARCHAR},

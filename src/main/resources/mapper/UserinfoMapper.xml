@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hdu.cn.hziee.dao.UserinfoMapper" >
-  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.Userinfo" >
+<mapper namespace="cn.cch.healthy.dao.UserinfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.cch.healthy.model.Userinfo" >
     <id column="User_id" property="userId" jdbcType="INTEGER" />
     <result column="User_openid" property="userOpenid" jdbcType="VARCHAR" />
     <result column="User_name" property="userName" jdbcType="VARCHAR" />
@@ -36,7 +36,7 @@
     delete from userinfo
     where User_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="hdu.cn.hziee.model.Userinfo" >
+  <insert id="insert" parameterType="cn.cch.healthy.model.Userinfo" >
     <selectKey resultType="java.lang.Integer" keyProperty="userId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -49,7 +49,7 @@
       #{userBirthday,jdbcType=TIME}, #{userCcupation,jdbcType=VARCHAR}, #{userFaceToken,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.Userinfo" >
+  <insert id="insertSelective" parameterType="cn.cch.healthy.model.Userinfo" >
     <selectKey resultType="java.lang.Integer" keyProperty="userId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -113,7 +113,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.Userinfo" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cch.healthy.model.Userinfo" >
     update userinfo
     <set >
       <if test="userOpenid != null" >
@@ -146,7 +146,7 @@
     </set>
     where User_id = #{userId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.Userinfo" >
+  <update id="updateByPrimaryKey" parameterType="cn.cch.healthy.model.Userinfo" >
     update userinfo
     set User_openid = #{userOpenid,jdbcType=VARCHAR},
       User_name = #{userName,jdbcType=VARCHAR},

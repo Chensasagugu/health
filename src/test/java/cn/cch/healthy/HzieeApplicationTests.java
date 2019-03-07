@@ -1,4 +1,4 @@
-package hdu.cn.hziee;
+package cn.cch.healthy;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

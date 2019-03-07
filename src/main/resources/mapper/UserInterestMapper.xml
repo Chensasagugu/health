@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hdu.cn.hziee.dao.UserInterestMapper" >
-  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.UserInterest" >
+<mapper namespace="cn.cch.healthy.dao.UserInterestMapper" >
+  <resultMap id="BaseResultMap" type="cn.cch.healthy.model.UserInterest" >
     <id column="UI_id" property="uiId" jdbcType="INTEGER" />
     <result column="User_id" property="userId" jdbcType="INTEGER" />
     <result column="Interest_id" property="interestId" jdbcType="INTEGER" />
@@ -19,14 +19,14 @@
     delete from userinterest
     where UI_id = #{uiId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="hdu.cn.hziee.model.UserInterest" >
+  <insert id="insert" parameterType="cn.cch.healthy.model.UserInterest" >
     <selectKey resultType="java.lang.Integer" keyProperty="uiId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into userinterest (User_id, Interest_id)
     values (#{userId,jdbcType=INTEGER}, #{interestId,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.UserInterest" >
+  <insert id="insertSelective" parameterType="cn.cch.healthy.model.UserInterest" >
     <selectKey resultType="java.lang.Integer" keyProperty="uiId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -48,7 +48,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.UserInterest" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cch.healthy.model.UserInterest" >
     update userinterest
     <set >
       <if test="userId != null" >
@@ -60,7 +60,7 @@
     </set>
     where UI_id = #{uiId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.UserInterest" >
+  <update id="updateByPrimaryKey" parameterType="cn.cch.healthy.model.UserInterest" >
     update userinterest
     set User_id = #{userId,jdbcType=INTEGER},
       Interest_id = #{interestId,jdbcType=INTEGER}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hdu.cn.hziee.dao.IllnessMapper" >
-  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.Illness" >
+<mapper namespace="cn.cch.healthy.dao.IllnessMapper" >
+  <resultMap id="BaseResultMap" type="cn.cch.healthy.model.Illness" >
     <id column="ill_id" property="illId" jdbcType="INTEGER" />
     <result column="ill_name" property="illName" jdbcType="VARCHAR" />
   </resultMap>
@@ -27,14 +27,14 @@
     delete from illness
     where ill_id = #{illId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="hdu.cn.hziee.model.Illness" >
+  <insert id="insert" parameterType="cn.cch.healthy.model.Illness" >
     <selectKey resultType="java.lang.Integer" keyProperty="illId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into illness (ill_name)
     values (#{illName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.Illness" >
+  <insert id="insertSelective" parameterType="cn.cch.healthy.model.Illness" >
     <selectKey resultType="java.lang.Integer" keyProperty="illId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.Illness" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cch.healthy.model.Illness" >
     update illness
     <set >
       <if test="illName != null" >
@@ -59,7 +59,7 @@
     </set>
     where ill_id = #{illId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.Illness" >
+  <update id="updateByPrimaryKey" parameterType="cn.cch.healthy.model.Illness" >
     update illness
     set ill_name = #{illName,jdbcType=VARCHAR}
     where ill_id = #{illId,jdbcType=INTEGER}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="hdu.cn.hziee.dao.OccupationMapper" >
-  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.Occupation" >
+<mapper namespace="cn.cch.healthy.dao.OccupationMapper" >
+  <resultMap id="BaseResultMap" type="cn.cch.healthy.model.Occupation" >
     <id column="Occupation_id" property="occupationId" jdbcType="INTEGER" />
     <result column="Occupation_name" property="occupationName" jdbcType="VARCHAR" />
     <result column="Occupation_pressure" property="occupationPressure" jdbcType="INTEGER" />
@@ -25,7 +25,7 @@
     delete from occupation
     where Occupation_id = #{occupationId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="hdu.cn.hziee.model.Occupation" >
+  <insert id="insert" parameterType="cn.cch.healthy.model.Occupation" >
     <selectKey resultType="java.lang.Integer" keyProperty="occupationId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -34,7 +34,7 @@
     values (#{occupationName,jdbcType=VARCHAR}, #{occupationPressure,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.Occupation" >
+  <insert id="insertSelective" parameterType="cn.cch.healthy.model.Occupation" >
     <selectKey resultType="java.lang.Integer" keyProperty="occupationId" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -56,7 +56,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.Occupation" >
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cch.healthy.model.Occupation" >
     update occupation
     <set >
       <if test="occupationName != null" >
@@ -68,7 +68,7 @@
     </set>
     where Occupation_id = #{occupationId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.Occupation" >
+  <update id="updateByPrimaryKey" parameterType="cn.cch.healthy.model.Occupation" >
     update occupation
     set Occupation_name = #{occupationName,jdbcType=VARCHAR},
       Occupation_pressure = #{occupationPressure,jdbcType=INTEGER}
