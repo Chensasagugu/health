@@ -14,6 +14,15 @@
     from illness
     where ill_id = #{illId,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByIllname" resultMap="BaseResultMap">
+    select * from illness where ill_name = #{illName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from illness
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from illness
     where ill_id = #{illId,jdbcType=INTEGER}

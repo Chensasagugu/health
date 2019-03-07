@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hdu.cn.hziee.dao.OccupationMapper" >
+  <resultMap id="BaseResultMap" type="hdu.cn.hziee.model.Occupation" >
+    <id column="Occupation_id" property="occupationId" jdbcType="INTEGER" />
+    <result column="Occupation_name" property="occupationName" jdbcType="VARCHAR" />
+    <result column="Occupation_pressure" property="occupationPressure" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Occupation_id, Occupation_name, Occupation_pressure
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from occupation
+    where Occupation_id = #{occupationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from occupation
+    where Occupation_id = #{occupationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hdu.cn.hziee.model.Occupation" >
+    <selectKey resultType="java.lang.Integer" keyProperty="occupationId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into occupation (Occupation_name, Occupation_pressure
+      )
+    values (#{occupationName,jdbcType=VARCHAR}, #{occupationPressure,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hdu.cn.hziee.model.Occupation" >
+    <selectKey resultType="java.lang.Integer" keyProperty="occupationId" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into occupation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="occupationName != null" >
+        Occupation_name,
+      </if>
+      <if test="occupationPressure != null" >
+        Occupation_pressure,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="occupationName != null" >
+        #{occupationName,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationPressure != null" >
+        #{occupationPressure,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hdu.cn.hziee.model.Occupation" >
+    update occupation
+    <set >
+      <if test="occupationName != null" >
+        Occupation_name = #{occupationName,jdbcType=VARCHAR},
+      </if>
+      <if test="occupationPressure != null" >
+        Occupation_pressure = #{occupationPressure,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Occupation_id = #{occupationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hdu.cn.hziee.model.Occupation" >
+    update occupation
+    set Occupation_name = #{occupationName,jdbcType=VARCHAR},
+      Occupation_pressure = #{occupationPressure,jdbcType=INTEGER}
+    where Occupation_id = #{occupationId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -9,13 +9,13 @@
     <result column="User_age" property="userAge" jdbcType="INTEGER" />
     <result column="User_height" property="userHeight" jdbcType="DOUBLE" />
     <result column="User_weight" property="userWeight" jdbcType="DOUBLE" />
-    <result column="User_workpressure" property="userWorkpressure" jdbcType="INTEGER" />
+    <result column="User_birthday" property="userBirthday" jdbcType="TIME" />
+    <result column="User_ccupation" property="userCcupation" jdbcType="VARCHAR" />
     <result column="User_face_token" property="userFaceToken" jdbcType="VARCHAR" />
-    <result column="User_special" property="userSpecial" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    User_id, User_openid, User_name, User_sex, User_age, User_height, User_weight, User_workpressure, 
-    User_face_token, User_special
+    User_id, User_openid, User_name, User_sex, User_age, User_height, User_weight, User_birthday, 
+    User_ccupation, User_face_token
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -42,11 +42,11 @@
     </selectKey>
     insert into userinfo (User_openid, User_name, User_sex, 
       User_age, User_height, User_weight, 
-      User_workpressure, User_face_token, User_special
+      User_birthday, User_ccupation, User_face_token
       )
     values (#{userOpenid,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, 
       #{userAge,jdbcType=INTEGER}, #{userHeight,jdbcType=DOUBLE}, #{userWeight,jdbcType=DOUBLE}, 
-      #{userWorkpressure,jdbcType=INTEGER}, #{userFaceToken,jdbcType=VARCHAR}, #{userSpecial,jdbcType=INTEGER}
+      #{userBirthday,jdbcType=TIME}, #{userCcupation,jdbcType=VARCHAR}, #{userFaceToken,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="hdu.cn.hziee.model.Userinfo" >
@@ -73,14 +73,14 @@
       <if test="userWeight != null" >
         User_weight,
       </if>
-      <if test="userWorkpressure != null" >
-        User_workpressure,
+      <if test="userBirthday != null" >
+        User_birthday,
+      </if>
+      <if test="userCcupation != null" >
+        User_ccupation,
       </if>
       <if test="userFaceToken != null" >
         User_face_token,
-      </if>
-      <if test="userSpecial != null" >
-        User_special,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -102,14 +102,14 @@
       <if test="userWeight != null" >
         #{userWeight,jdbcType=DOUBLE},
       </if>
-      <if test="userWorkpressure != null" >
-        #{userWorkpressure,jdbcType=INTEGER},
+      <if test="userBirthday != null" >
+        #{userBirthday,jdbcType=TIME},
+      </if>
+      <if test="userCcupation != null" >
+        #{userCcupation,jdbcType=VARCHAR},
       </if>
       <if test="userFaceToken != null" >
         #{userFaceToken,jdbcType=VARCHAR},
-      </if>
-      <if test="userSpecial != null" >
-        #{userSpecial,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -134,14 +134,14 @@
       <if test="userWeight != null" >
         User_weight = #{userWeight,jdbcType=DOUBLE},
       </if>
-      <if test="userWorkpressure != null" >
-        User_workpressure = #{userWorkpressure,jdbcType=INTEGER},
+      <if test="userBirthday != null" >
+        User_birthday = #{userBirthday,jdbcType=TIME},
+      </if>
+      <if test="userCcupation != null" >
+        User_ccupation = #{userCcupation,jdbcType=VARCHAR},
       </if>
       <if test="userFaceToken != null" >
         User_face_token = #{userFaceToken,jdbcType=VARCHAR},
-      </if>
-      <if test="userSpecial != null" >
-        User_special = #{userSpecial,jdbcType=INTEGER},
       </if>
     </set>
     where User_id = #{userId,jdbcType=INTEGER}
@@ -154,9 +154,9 @@
       User_age = #{userAge,jdbcType=INTEGER},
       User_height = #{userHeight,jdbcType=DOUBLE},
       User_weight = #{userWeight,jdbcType=DOUBLE},
-      User_workpressure = #{userWorkpressure,jdbcType=INTEGER},
-      User_face_token = #{userFaceToken,jdbcType=VARCHAR},
-      User_special = #{userSpecial,jdbcType=INTEGER}
+      User_birthday = #{userBirthday,jdbcType=TIME},
+      User_ccupation = #{userCcupation,jdbcType=VARCHAR},
+      User_face_token = #{userFaceToken,jdbcType=VARCHAR}
     where User_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

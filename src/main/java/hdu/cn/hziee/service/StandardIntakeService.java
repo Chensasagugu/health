@@ -3,7 +3,6 @@ package hdu.cn.hziee.service;
 import hdu.cn.hziee.dao.StandardIntake_FemaleMapper;
 import hdu.cn.hziee.dao.StandardIntake_MaleMapper;
 import hdu.cn.hziee.model.StandardIntake;
-import hdu.cn.hziee.model.Userinfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

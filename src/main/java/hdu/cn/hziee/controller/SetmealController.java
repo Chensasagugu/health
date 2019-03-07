@@ -107,6 +107,7 @@ public class SetmealController {
                 }
             }
 
+            if (restList.size() != 0){
                 for (int m = 0;m<insertList.size();m++){
                     int in = insertList.get(m);
                     for (int n = 0;n<restList.size();n++){
@@ -118,6 +119,7 @@ public class SetmealController {
                         }
                     }
                 }
+            }
         }
         if (insertList.size() != 0){
             for (int i = 0;i<insertList.size();i++){

@@ -1,5 +1,7 @@
 package hdu.cn.hziee.model;
 
+import java.util.Date;
+
 public class Userinfo {
     private Integer userId;
 
@@ -15,11 +17,11 @@ public class Userinfo {
 
     private Double userWeight;
 
-    private Integer userWorkpressure;
+    private Date userBirthday;
+
+    private String userCcupation;
 
     private String userFaceToken;
-
-    private Integer userSpecial;
 
     public Integer getUserId() {
         return userId;
@@ -77,12 +79,20 @@ public class Userinfo {
         this.userWeight = userWeight;
     }
 
-    public Integer getUserWorkpressure() {
-        return userWorkpressure;
+    public Date getUserBirthday() {
+        return userBirthday;
     }
 
-    public void setUserWorkpressure(Integer userWorkpressure) {
-        this.userWorkpressure = userWorkpressure;
+    public void setUserBirthday(Date userBirthday) {
+        this.userBirthday = userBirthday;
+    }
+
+    public String getUserCcupation() {
+        return userCcupation;
+    }
+
+    public void setUserCcupation(String userCcupation) {
+        this.userCcupation = userCcupation == null ? null : userCcupation.trim();
     }
 
     public String getUserFaceToken() {
@@ -91,13 +101,5 @@ public class Userinfo {
 
     public void setUserFaceToken(String userFaceToken) {
         this.userFaceToken = userFaceToken == null ? null : userFaceToken.trim();
-    }
-
-    public Integer getUserSpecial() {
-        return userSpecial;
-    }
-
-    public void setUserSpecial(Integer userSpecial) {
-        this.userSpecial = userSpecial;
     }
 }

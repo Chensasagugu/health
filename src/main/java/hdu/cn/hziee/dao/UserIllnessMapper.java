@@ -20,4 +20,8 @@ public interface UserIllnessMapper {
     int updateByPrimaryKey(UserIllness record);
 
     List selectByUserid(int userId);
+
+    int deleteByUserid(int userId);
+
+    int deleteByUserIll(UserIllness record);
 }

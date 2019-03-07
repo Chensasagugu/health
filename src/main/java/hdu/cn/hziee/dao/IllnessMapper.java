@@ -3,6 +3,8 @@ package hdu.cn.hziee.dao;
 import hdu.cn.hziee.model.Illness;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface IllnessMapper {
     int deleteByPrimaryKey(Integer illId);
@@ -16,4 +18,8 @@ public interface IllnessMapper {
     int updateByPrimaryKeySelective(Illness record);
 
     int updateByPrimaryKey(Illness record);
+
+    Illness selectByIllname(String illName);
+
+    List selectAll();
 }
