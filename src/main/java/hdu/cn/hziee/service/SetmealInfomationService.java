@@ -17,4 +17,6 @@ public class SetmealInfomationService {
 
     public List SelectByTime(int time){return mapper.selectByTime(time);}
 
+    public int UpdateByPrimaryKeySelective(SetmealInfomation SmI){ return mapper.updateByPrimaryKeySelective(SmI); }
+
 }

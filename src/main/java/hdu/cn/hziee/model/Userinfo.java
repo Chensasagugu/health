@@ -1,11 +1,9 @@
 package hdu.cn.hziee.model;
 
-public class Consumer {
+public class Userinfo {
     private Integer userId;
 
-    private String user;
-
-    private String password;
+    private String userOpenid;
 
     private String userName;
 
@@ -31,20 +29,12 @@ public class Consumer {
         this.userId = userId;
     }
 
-    public String getUser() {
-        return user;
+    public String getUserOpenid() {
+        return userOpenid;
     }
 
-    public void setUser(String user) {
-        this.user = user == null ? null : user.trim();
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+    public void setUserOpenid(String userOpenid) {
+        this.userOpenid = userOpenid == null ? null : userOpenid.trim();
     }
 
     public String getUserName() {

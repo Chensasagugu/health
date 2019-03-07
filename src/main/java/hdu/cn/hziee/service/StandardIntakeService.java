@@ -2,15 +2,10 @@ package hdu.cn.hziee.service;
 
 import hdu.cn.hziee.dao.StandardIntake_FemaleMapper;
 import hdu.cn.hziee.dao.StandardIntake_MaleMapper;
-import hdu.cn.hziee.model.Consumer;
 import hdu.cn.hziee.model.StandardIntake;
-import hdu.cn.hziee.model.StandardIntake_Female;
-import hdu.cn.hziee.model.StandardIntake_Male;
+import hdu.cn.hziee.model.Userinfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class StandardIntakeService {
@@ -25,10 +20,10 @@ public class StandardIntakeService {
     * 输出：营养素列表
     * 描述：获得用户在膳食营养素表中需要的每一个营养素含量。
     * */
-    public StandardIntake getStandardIntake(Consumer consumer) {
-        int age = consumer.getUserAge();
-        int pressure = consumer.getUserWorkpressure();
-        if (consumer.getUserSex().equals("1")) {
+    public StandardIntake getStandardIntake(Userinfo user) {
+        int age = user.getUserAge();
+        int pressure = user.getUserWorkpressure();
+        if (user.getUserSex().equals("1")) {
             if (age <= 10) {
                 StandardIntake intake = new StandardIntake(standardIntake_maleMapper.selectByPrimaryKey(age + 1));
                 return intake;

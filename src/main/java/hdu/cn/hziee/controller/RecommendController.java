@@ -42,7 +42,7 @@ public class RecommendController {
     * */
     @ResponseBody
     @RequestMapping("/recommend")
-    public List recommend(@RequestBody Consumer consumer)
+    public List recommend(@RequestBody Userinfo consumer)
     {
         Date date = new Date();
         int time=0;
