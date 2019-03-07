@@ -13,4 +13,6 @@ public class FoodFormulaService {
     FoodFormulaMapper mapper;
 
     public List SelectByRecipesId(int recipesId){ return mapper.selectByrecipesId(recipesId); }
+
+    public List SelectByFoodid(int food_id){ return mapper.selectByFoodid(food_id); }
 }

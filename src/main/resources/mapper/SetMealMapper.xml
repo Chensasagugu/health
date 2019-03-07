@@ -20,6 +20,10 @@
     select * from setmeal where SM_id = #{smId,jdbcType=INTEGER}
   </select>
 
+  <select id="selectByRecipesid" resultMap="BaseResultMap">
+    select * from setmeal where Recipes_id = #{recipesId,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from setmeal
     where SM_number = #{smNumber,jdbcType=INTEGER}

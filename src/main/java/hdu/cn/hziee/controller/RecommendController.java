@@ -1,12 +1,10 @@
 package hdu.cn.hziee.controller;
 
-import hdu.cn.hziee.model.Consumer;
-import hdu.cn.hziee.model.PushInfomation;
-import hdu.cn.hziee.model.SetmealInfomation;
-import hdu.cn.hziee.model.StandardIntake;
+import hdu.cn.hziee.model.*;
 import hdu.cn.hziee.service.PushInfomationService;
 import hdu.cn.hziee.service.SetmealInfomationService;
 import hdu.cn.hziee.service.StandardIntakeService;
+import hdu.cn.hziee.util.AliasUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -95,6 +94,26 @@ public class RecommendController {
                 }
             }
         }
+        /*
+        * 使用alias算法开始抽奖
+        * */
+        List<Adward> adwards = new ArrayList<Adward>();
+        int totalWeight=0;
+        List list=null;
+        //设置奖品的名称(套餐id)和权重
+        for(int i=0;i<setMealList.size();i++)
+        {
+            Adward adward = new Adward(setMealList.get(i).getSmId());
+            totalWeight+=adward.getWeight();
+            adwards.add(adward);
+        }
+        for(int i =0;i<adwards.size();i++)
+        {
+            list.add(adwards.get(i).getWeight()/totalWeight);
+        }
+        AliasUtil method = new AliasUtil(list);
+        int index = method.next();
+        System.out.println("推荐的套餐id是"+adwards.get(index).getSmId());
         return setMealList;
     }
     /*
@@ -102,8 +121,30 @@ public class RecommendController {
     * */
     @ResponseBody
     @RequestMapping("/test")
-    public List test()
+    public Adward test()
     {
-        return pushInfomationService.selectRecentPush(0);
+        /*
+         * 使用alias算法开始抽奖
+         * */
+        List<SetmealInfomation> setMealList = setmealInfomationService.SelectByTime(2);
+        List<Adward> adwards = new ArrayList<Adward>();
+        int totalWeight=0;
+        List list=new ArrayList();
+        //设置奖品的名称(套餐id)和权重
+        for(int i=0;i<setMealList.size();i++)
+        {
+            Adward adward = new Adward(setMealList.get(i).getSmId());
+            totalWeight+=adward.getWeight();
+            adwards.add(adward);
+        }
+        for(int i =0;i<adwards.size();i++)
+        {
+            list.add(adwards.get(i).getWeight()/totalWeight);
+        }
+        AliasUtil method = new AliasUtil(list);
+        int index = method.next();
+        System.out.println("index="+index);
+        System.out.println("smId="+adwards.get(index).getSmId());
+        return adwards.get(index);
     }
 }

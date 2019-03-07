@@ -22,4 +22,6 @@ public interface SetMealMapper {
     List selectBySMid(int id);
 
     int deleteByRecipesId(SetMeal record);
+
+    SetMeal selectByRecipesid(int recipesId);
 }
