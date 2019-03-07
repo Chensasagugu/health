@@ -1,8 +1,10 @@
 package hdu.cn.hziee.service;
 
+import hdu.cn.hziee.dao.OccupationMapper;
 import hdu.cn.hziee.dao.StandardIntake_FemaleMapper;
 import hdu.cn.hziee.dao.StandardIntake_MaleMapper;
 import hdu.cn.hziee.model.StandardIntake;
+import hdu.cn.hziee.model.Userinfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,8 @@ public class StandardIntakeService {
     StandardIntake_FemaleMapper standardIntake_femaleMapper;
     @Autowired
     StandardIntake_MaleMapper standardIntake_maleMapper;
-
+    @Autowired
+    OccupationMapper occupationMapper;
 
     /*
     * 输入：consumer类
@@ -21,7 +24,8 @@ public class StandardIntakeService {
     * */
     public StandardIntake getStandardIntake(Userinfo user) {
         int age = user.getUserAge();
-        int pressure = user.getUserWorkpressure();
+        String occupation = user.getUserCcupation();
+        int pressure = occupationMapper.getPressure(occupation);
         if (user.getUserSex().equals("1")) {
             if (age <= 10) {
                 StandardIntake intake = new StandardIntake(standardIntake_maleMapper.selectByPrimaryKey(age + 1));

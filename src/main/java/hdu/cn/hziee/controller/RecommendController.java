@@ -1,10 +1,9 @@
 package hdu.cn.hziee.controller;
 
 import hdu.cn.hziee.model.*;
-import hdu.cn.hziee.service.PushInfomationService;
-import hdu.cn.hziee.service.SetmealInfomationService;
-import hdu.cn.hziee.service.StandardIntakeService;
+import hdu.cn.hziee.service.*;
 import hdu.cn.hziee.util.AliasUtil;
+import hdu.cn.hziee.util.GetRemoveSetmeal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -13,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class RecommendController {
@@ -24,7 +21,13 @@ public class RecommendController {
     @Autowired
     SetmealInfomationService setmealInfomationService;
     @Autowired
+    SetMealService setMealService;
+    @Autowired
     PushInfomationService pushInfomationService;
+    @Autowired
+    RecipesService recipesService;
+
+    GetRemoveSetmeal getRemoveSetmeal = new GetRemoveSetmeal();
     //能量需要的上下波动范围
     @Value("${range.energy}")
     private double energyRange;
@@ -42,7 +45,7 @@ public class RecommendController {
     * */
     @ResponseBody
     @RequestMapping("/recommend")
-    public List recommend(@RequestBody Userinfo consumer)
+    public List<Map> recommend(@RequestBody Userinfo consumer)
     {
         Date date = new Date();
         int time=0;
@@ -89,9 +92,18 @@ public class RecommendController {
             for(int j=0;j<newestPush.size();j++)
             {
                 if(setMealList.get(i).getSmId()==newestPush.get(j).getSmId())
-                {
                     setMealList.remove(i);
-                }
+            }
+        }
+        //过滤掉当前用户禁止食用的套餐
+        List forbiddenList = getRemoveSetmeal.GetRemoveSetmeal(consumer.getUserId());
+        for(int i=0;i<setMealList.size();i++)
+        {
+
+            for(int j=0;j<newestPush.size();j++)
+            {
+                if(setMealList.get(i).getSmId()==forbiddenList.get(i))
+                    setMealList.remove(i);
             }
         }
         /*
@@ -114,14 +126,23 @@ public class RecommendController {
         AliasUtil method = new AliasUtil(list);
         int index = method.next();
         System.out.println("推荐的套餐id是"+adwards.get(index).getSmId());
-        return setMealList;
+        List<SetMeal> setMealContent = setMealService.SelectBySMid(adwards.get(index).getSmId());
+        List<Map> mapList = new ArrayList<>();
+        for(int i=0;i<setMealContent.size();i++)
+        {
+            Map map = new HashMap();
+            map.put("recipes",setMealContent.get(i));
+            map.put("name",recipesService.getName(setMealContent.get(i).getRecipesId()));
+            mapList.add(map);
+        }
+        return mapList;
     }
     /*
     * 描述：测试接口
     * */
     @ResponseBody
     @RequestMapping("/test")
-    public Adward test()
+    public List<Map> test()
     {
         /*
          * 使用alias算法开始抽奖
@@ -145,6 +166,16 @@ public class RecommendController {
         int index = method.next();
         System.out.println("index="+index);
         System.out.println("smId="+adwards.get(index).getSmId());
-        return adwards.get(index);
+        List<SetMeal> setMealContent = setMealService.SelectBySMid(adwards.get(index).getSmId());
+
+        List<Map> mapList = new ArrayList<>();
+        for(int i=0;i<setMealContent.size();i++)
+        {
+            Map map = new HashMap();
+            map.put("recipes",setMealContent.get(i));
+            map.put("name",recipesService.getName(setMealContent.get(i).getRecipesId()));
+            mapList.add(map);
+        }
+        return mapList;
     }
 }

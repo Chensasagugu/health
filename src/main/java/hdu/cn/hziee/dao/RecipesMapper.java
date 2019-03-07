@@ -20,4 +20,6 @@ public interface RecipesMapper {
     int updateByPrimaryKey(Recipes record);
 
     List findall();
+
+    String getName(Integer recipesId);
 }

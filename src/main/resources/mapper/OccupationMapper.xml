@@ -15,6 +15,12 @@
     from occupation
     where Occupation_id = #{occupationId,jdbcType=INTEGER}
   </select>
+  <select id="getPressure" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select
+    Occupation_pressure
+    from occupation
+    where Occupation_name = #{occupationName,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from occupation
     where Occupation_id = #{occupationId,jdbcType=INTEGER}

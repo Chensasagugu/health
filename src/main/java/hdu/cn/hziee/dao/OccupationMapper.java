@@ -16,4 +16,6 @@ public interface OccupationMapper {
     int updateByPrimaryKeySelective(Occupation record);
 
     int updateByPrimaryKey(Occupation record);
+
+    int getPressure(String occupation);
 }

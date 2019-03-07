@@ -19,4 +19,6 @@ public class RecipesService {
     public int UpdateByPrimaryKeySelective(Recipes recipes){ return mapper.updateByPrimaryKeySelective(recipes); }
 
     public Recipes SelectByPrimaryKey(int Recipes_id){ return mapper.selectByPrimaryKey(Recipes_id); }
+
+    public String getName(int Recipes_id) { return mapper.getName(Recipes_id); }
 }
